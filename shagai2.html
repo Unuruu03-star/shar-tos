@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <title>Монгол наадгай</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: #f0f0f0;
+      padding: 20px;
+    }
+    .track {
+      position: relative;
+      width: 700px;
+      height: 150px;
+      margin: 10px auto;
+      border: 2px solid #333;
+      background: #fff;
+      overflow: hidden;
+    }
+    .horse {
+      position: absolute;
+      width: 80px;
+      transition: left 0.5s ease;
+    }
+    #horse1 {
+      top: 20px;
+      left: 0;
+    }
+    #horse2 {
+      top: 80px;
+      left: 0;
+    }
+    .finish {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 10px;
+      height: 100%;
+      background: repeating-linear-gradient(white, white 5px, black 5px, black 10px);
+    }
+    #shagaiContainer img {
+      margin: 5px;
+      width: 60px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Монгол наадгай</h1>
+  <div class="track">
+    <img id="horse1" class="horse" src="horse3.jpg" alt="horse1">
+    <img id="horse2" class="horse" src="horse3.jpg" alt="horse2">
+    <div class="finish"></div>
+  </div>
+  <p id="turnInfo">Эхлэхэд бэлэн! Тоглогч 1 эхэлнэ.</p>
+  <div id="shagaiContainer"></div>
+  <button id="rollBtn">Шагай орхих</button>
+  <p id="result"></p>
+
+  <script>
+    const shagaiImages = {
+      "mori": "images/mori.png",
+      "temee": "images/temee.png",
+      "honi": "images/honi.png",
+      "yamaa": "images/yamaa.png"
+    };
+
+    const sides = ["mori", "temee", "honi", "yamaa"];
+    const rollBtn = document.getElementById("rollBtn");
+    const shagaiContainer = document.getElementById("shagaiContainer");
+    const turnInfo = document.getElementById("turnInfo");
+    const result = document.getElementById("result");
+
+    let score1 = 0;
+    let score2 = 0;
+    let turn = 1;
+    const stepSize = 20;
+    const finishPixel = 620; // 700 - 80
+
+    rollBtn.addEventListener("click", () => {
+      shagaiContainer.innerHTML = "";
+      let moriCount = 0;
+
+      for (let i = 0; i < 4; i++) {
+        const side = sides[Math.floor(Math.random() * sides.length)];
+        const img = document.createElement("img");
+        img.src = shagaiImages[side];
+        img.alt = side;
+        shagaiContainer.appendChild(img);
+
+        if (side === "mori") moriCount++;
+      }
+
+      if (turn === 1) {
+        score1 += moriCount;
+        moveHorse("horse1", score1, 1);
+        turn = 2;
+        turnInfo.textContent = "Одоо Тоглогч 2 орхино.";
+      } else {
+        score2 += moriCount;
+        moveHorse("horse2", score2, 2);
+        turn = 1;
+        turnInfo.textContent = "Одоо Тоглогч 1 орхино.";
+      }
+    });
+
+    function moveHorse(id, score, playerNum) {
+      const px = score * stepSize;
+      const horse = document.getElementById(id);
+      horse.style.left = px + "px";
+
+      if (px >= finishPixel) {
+        result.textContent = `Тоглогч ${playerNum} яллаа! 🎉`;
+        rollBtn.disabled = true;
+        turnInfo.textContent = "";
+      }
+    }
+  </script>
+</body>
+</html>

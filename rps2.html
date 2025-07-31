@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rock Paper Scissors</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #fdd835;
+      margin-bottom: 20px;
+    }
+
+    .scoreboard {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .player, .computer {
+      text-align: center;
+    }
+
+    .hand {
+      font-size: 5rem;
+    }
+
+    .score {
+      font-size: 1.5rem;
+      margin-top: 10px;
+    }
+
+    .choices button {
+      font-size: 1.2rem;
+      margin: 10px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #e28cd4;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .choices button:hover {
+      background: #c144cc;
+    }
+
+    .result {
+      margin-top: 30px;
+    }
+
+    #winner {
+      color: #ffd700;
+      font-size: 1.5rem;
+    }
+
+    button#reset {
+      margin-top: 20px;
+      background: #c72ba5;
+    }
+
+    button#reset:hover {
+      background: #d246df;
+    }
+  </style>
+</head>
+<body>
+  <h1>✊ Rock 🖐 Paper ✌ Scissors</h1>
+
+  <div class="scoreboard">
+    <div class="player">
+      <div class="hand" id="user-hand">❓</div>
+      <div class="score" id="user-score">You: 0</div>
+    </div>
+    <div class="computer">
+      <div class="hand" id="computer-hand">❓</div>
+      <div class="score" id="computer-score">Computer: 0</div>
+    </div>
+  </div>
+
+  <div class="choices">
+    <button onclick="play('rock')">✊ Rock</button>
+    <button onclick="play('paper')">🖐 Paper</button>
+    <button onclick="play('scissors')">✌ Scissors</button>
+  </div>
+
+  <div class="result">
+    <h2 id="winner">Result: </h2>
+    <button id="reset" onclick="resetGame()">🔄 Play Again</button>
+  </div>
+
+  <script>
+    let userScore = 0;
+    let computerScore = 0;
+
+    function play(userChoice) {
+      const choices = ['rock', 'paper', 'scissors'];
+      const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+      document.getElementById('user-hand').innerText = emoji(userChoice);
+      document.getElementById('computer-hand').innerText = emoji(computerChoice);
+
+      let result = '';
+      if (userChoice === computerChoice) {
+        result = "It's a tie!";
+      } else if (
+        (userChoice === 'rock' && computerChoice === 'scissors') ||
+        (userChoice === 'paper' && computerChoice === 'rock') ||
+        (userChoice === 'scissors' && computerChoice === 'paper')
+      ) {
+        result = "You win!";
+        userScore++;
+      } else {
+        result = "Computer wins!";
+        computerScore++;
+      }
+
+      document.getElementById('winner').innerText = `Result: ${result}`;
+      document.getElementById('user-score').innerText = `You: ${userScore}`;
+      document.getElementById('computer-score').innerText = `Computer: ${computerScore}`;
+    }
+
+    function emoji(choice) {
+      if (choice === 'rock') return '✊';
+      if (choice === 'paper') return '🖐';
+      if (choice === 'scissors') return '✌';
+    }
+
+    function resetGame() {
+      userScore = 0;
+      computerScore = 0;
+      document.getElementById('user-score').innerText = 'You: 0';
+      document.getElementById('computer-score').innerText = 'Computer: 0';
+      document.getElementById('user-hand').innerText = '❓';
+      document.getElementById('computer-hand').innerText = '❓';
+      document.getElementById('winner').innerText = 'Result:';
+    }
+  </script>
+</body>
+</html>
