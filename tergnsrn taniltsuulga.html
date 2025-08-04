@@ -34,23 +34,15 @@
     }
 
     .flower3 {
-      top: 40%;
+      top: 70%;
       left: -100px;
       animation-delay: 6s;
     }
 
     @keyframes float {
-      0% {
-        transform: translateX(0);
-        opacity: 0;
-      }
-      30% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateX(120vw) rotate(360deg);
-        opacity: 0;
-      }
+      0% { transform: translateX(0); opacity: 0; }
+      30% { opacity: 1; }
+      100% { transform: translateX(120vw) rotate(360deg); opacity: 0; }
     }
 
     .tab-container {
@@ -173,9 +165,9 @@
 
     <!-- Tabs -->
     <div class="tab-buttons">
-      <button class="tab-btn active" onclick="openTab(event, 'about')">About Me</button>
-      <button class="tab-btn" onclick="openTab(event, 'hobbies')">Hobbies</button>
-      <button class="tab-btn" onclick="openTab(event, 'Girls-code')">What I Learned from Girls Code</button>
+      <button class="tab-btn active" onclick="openTab(event, 'about')" id="btn-about">About Me</button>
+      <button class="tab-btn" onclick="openTab(event, 'hobbies')" id="btn-hobbies">Hobbies</button>
+      <button class="tab-btn" onclick="openTab(event, 'Girls-code')" id="btn-girlsCode">What I Learned from Girls Code</button>
     </div>
 
     <!-- Tab contents -->
@@ -199,6 +191,11 @@
   <script>
     const content = {
       en: {
+        tabTitles: {
+          about: "About Me",
+          hobbies: "Hobbies",
+          girlsCode: "What I Learned from Girls Code"
+        },
         about: {
           title: "About Me",
           text: "Hello everyone! My name is Terguunsaran Sanjaasuren. I study at Ireedui Tsogtsolbor School in Ulaanbaatar. In 2025, I joined Girls Code. Since then, I’ve been learning programming and algorithms very well. I love science, English, and technology. My dream is to study at Harvard and become an expert in artificial intelligence. I enjoy coding, learning new things, and listening to music in my free time."
@@ -214,16 +211,21 @@
         }
       },
       mn: {
+        tabTitles: {
+          about: "Миний тухай",
+          hobbies: "Хобби",
+          girlsCode: "Girls Code-оос сурсан зүйл"
+        },
         about: {
           title: "Миний тухай",
-          text: "Сайн байцгаана уу! Намайг Санжаасүрэн овогтой Тэргүүнсаран  гэдэг. Би Улаанбаатар хотын Ирээдүй цогцолбор сургуульд сурдаг. 2025 онд Girls Code хөтөлбөрт хамрагдсан бөгөөд програмчлал, алгоритм маш сайн сурч байгаа. Би байгалийн ухаан, англи хэл, технологид дуртай. Миний мөрөөдөл бол Харвардад суралцаж, хиймэл оюун ухааны мэргэжилтэн болох юм. Чөлөөт цагаараа код бичих, шинэ зүйлс сурах, хөгжим сонсох дуртай."
+          text: "Сайн байцгаана уу! Намайг Санжаасүрэн овогтой Тэргүүнсаран гэдэг. Би Улаанбаатар хотын Ирээдүй цогцолбор сургуульд сурдаг. 2025 онд Girls Code хөтөлбөрт хамрагдсан бөгөөд програмчлал, алгоритм маш сайн сурч байгаа. Би байгалийн ухаан, англи хэл, технологид дуртай. Миний мөрөөдөл бол Харвардад суралцаж, хиймэл оюун ухааны мэргэжилтэн болох юм. Чөлөөт цагаараа код бичих, шинэ зүйлс сурах, хөгжим сонсох дуртай."
         },
         hobbies: {
           title: "Хобби",
           text: "Надад үнэхээр таалагддаг олон хобби бий. Програмчлал миний оюун ухааныг хөгжүүлж, шинэ зүйл бүтээхэд тус болдог. Хөгжим сонсох нь намайг тайвшруулж, ядрах үед эрч хүч өгдөг. Мөн би англи хэл, хиймэл оюун ухаан, байгалийн шинжлэх ухаан, технологийн талаар сурах дуртай. Энэ хоббиуд нь намайг өдөр бүр улам урам зоригтой, бүтээлч болгож өгдөг."
         },
         girlsCode: {
-          title: "Girls Code-оос юу сурсан бэ?",
+          title: "Girls Code-оос би юу сурсан бэ?",
           text: "Girls Code болон хамтран ажилласан бүх гайхалтай байгууллагуудад маш их талархаж байна. Тэдний ачаар би JavaScript, HTML, CSS, UI, UX талаар маш олон зүйлийг сурсан. Тэдний дэмжлэг, хамтын ажиллагаа миний хөгжлийн замналд үнэтэй хувь нэмэр оруулсан.",
           extra: "Энэ гайхамшигт хөтөлбөрт хамрагдсанаар би зөвхөн программчлал төдийгүй бусад олон чухал зүйлсийг сурч чадсан. Энэ бол миний амьдралыг өөрчилсөн туршлага болсон."
         }
@@ -231,6 +233,12 @@
     };
 
     function setLanguage(lang) {
+      // tab buttons
+      document.getElementById("btn-about").innerText = content[lang].tabTitles.about;
+      document.getElementById("btn-hobbies").innerText = content[lang].tabTitles.hobbies;
+      document.getElementById("btn-girlsCode").innerText = content[lang].tabTitles.girlsCode;
+
+      // tab contents
       document.querySelector("#about h2").innerText = content[lang].about.title;
       document.querySelector("#about p").innerText = content[lang].about.text;
 
@@ -256,3 +264,4 @@
   </script>
 </body>
 </html>
+
