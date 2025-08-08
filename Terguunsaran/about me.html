@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title data-i18n="title">Миний тухай</title>
+<style>
+  :root {
+    --navy: #0a3d62;
+    --light-bg: #f9fafd;
+    --light-text: #222;
+    --light-section: #ffffff;
+    --dark-bg: #121212;
+    --dark-text: #e4e6eb;
+    --dark-section: #1e1e1e;
+    --accent: #1e90ff;
+  }
+  body {
+    margin: 0;
+    background: var(--light-bg);
+    color: var(--light-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  body.dark {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+  }
+  nav {
+    background-color: var(--navy);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  nav .logo {
+    user-select: none;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+    margin: 0;
+    padding: 0;
+  }
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  nav ul li a:hover {
+    text-decoration: underline;
+    color: #90caf9;
+  }
+  .controls {
+    display: flex;
+    gap: 20px;
+  }
+  .controls button {
+    background: transparent;
+    border: 1.5px solid white;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .controls button:hover {
+    background-color: white;
+    color: var(--navy);
+  }
+  main {
+    max-width: 900px;
+    margin: 70px auto;
+    padding: 20px;
+  }
+  section {
+    background-color: var(--light-section);
+    padding: 60px 30px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation-fill-mode: forwards;
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-delay: var(--delay);
+  }
+  body.dark section {
+    background-color: var(--dark-section);
+  }
+  section:nth-child(1) { --delay: 0.3s; }
+  section:nth-child(2) { --delay: 0.6s; }
+  section:nth-child(3) { --delay: 0.9s; }
+  section:nth-child(4) { --delay: 1.2s; }
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  h1, h2 {
+    margin-bottom: 20px;
+  }
+  p {
+    line-height: 1.6;
+    font-size: 18px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" data-i18n="logo">IT Танилцуулга</div>
+  <ul>
+    <li><a href="about me index.html" data-i18n="nav_home">Нүүр</a></li>
+    <li><a href="about me.html" data-i18n="nav_about">Танилцуулга</a></li>
+    <li><a href="about me skills.html" data-i18n="nav_skills">Ур чадвар</a></li>
+    <li><a href="about me contact.html" data-i18n="nav_contact">Холбоо</a></li>
+  </ul>
+  <div class="controls">
+    <button id="darkModeToggle"> Dark mode</button>
+    <button id="langToggle">EN</button>
+  </div>
+</nav>
+
+<main>
+  <section>
+    <h1 data-i18n="aboutme_title">Танилцуулга</h1>
+    <p data-i18n="aboutme_desc">Би IT салбарт сонирхолтой, өөрийгөө байнга хөгжүүлж буй мэргэжлийн веб хөгжүүлэгч юм. Вэб дизайныг сайжруулах, шинэлэг технологи ашиглахыг зорьдог.</p>
+  </section>
+  <section>
+    <h2 data-i18n="aboutme_goals_title">Зорилго</h2>
+    <p data-i18n="aboutme_goals_desc">Шинэ сорилтуудыг даван туулж, мэргэжлийн ур чадвараа тасралтгүй сайжруулахыг зорьж байна.</p>
+  </section>
+  <section>
+    <h2 data-i18n="aboutme_hobby_title">Сонирхол</h2>
+    <p data-i18n="aboutme_hobby_desc">Програмчлал, дизайн, мөн шинэ технологи судлах дуртай.</p>
+  </section>
+</main>
+
+
+
+<script>
+  const translations = {
+    mn: {
+      title: "Танилцуулга",
+      logo: "IT Танилцуулга",
+      nav_home: "Нүүр",
+      nav_about: "Миний тухай",
+      nav_skills: "Ур чадвар",
+      nav_contact: "Холбоо",
+      aboutme_title: "Миний тухай",
+      aboutme_desc: "Би IT салбарт сонирхолтой, өөрийгөө байнга хөгжүүлж буй мэргэжлийн веб хөгжүүлэгч юм. Вэб дизайныг сайжруулах, шинэлэг технологи ашиглахыг зорьдог.",
+      aboutme_goals_title: "Зорилго",
+      aboutme_goals_desc: "Шинэ сорилтуудыг даван туулж, мэргэжлийн ур чадвараа тасралтгүй сайжруулахыг зорьж байна.",
+      aboutme_hobby_title: "Сонирхол",
+      aboutme_hobby_desc: "Програмчлал, дизайн, мөн шинэ технологи судлах дуртай.",
+      
+    },
+    en: {
+      title: "About Me",
+      logo: "IT Portfolio",
+      nav_home: "Home",
+      nav_about: "About Me",
+      nav_skills: "Skills",
+      nav_contact: "Contact",
+      aboutme_title: "About Me",
+      aboutme_desc: "I am a passionate professional web developer constantly improving myself in IT. I strive to improve web design and use innovative technologies.",
+      aboutme_goals_title: "Goals",
+      aboutme_goals_desc: "I aim to overcome new challenges and continuously enhance my professional skills.",
+      aboutme_hobby_title: "Hobbies",
+      aboutme_hobby_desc: "I enjoy programming, design, and exploring new technologies.",
+      
+    }
+  };
+
+  let currentLang = localStorage.getItem("lang") || "mn";
+
+  function updateTexts() {
+    document.title = translations[currentLang].title;
+    document.documentElement.lang = currentLang;
+
+    const elements = document.querySelectorAll("[data-i18n]");
+    elements.forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (translations[currentLang][key]) {
+        el.textContent = translations[currentLang][key];
+      }
+    });
+
+    document.getElementById("langToggle").textContent = currentLang === "mn" ? "EN" : "MN";
+
+    const darkModeBtn = document.getElementById("darkModeToggle");
+    if(document.body.classList.contains("dark")) {
+      darkModeBtn.textContent = " Light mode";
+    } else {
+      darkModeBtn.textContent = "Dark mode";
+    }
+  }
+
+  function toggleLanguage() {
+    currentLang = currentLang === "mn" ? "en" : "mn";
+    localStorage.setItem("lang", currentLang);
+    updateTexts();
+  }
+
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+    updateTexts();
+  }
+
+  document.getElementById("langToggle").addEventListener("click", toggleLanguage);
+  document.getElementById("darkModeToggle").addEventListener("click", toggleDarkMode);
+
+  window.addEventListener("load", () => {
+    if(localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+    }
+    currentLang = localStorage.getItem("lang") || "mn";
+    updateTexts();
+    document.querySelectorAll("section").forEach(section => {
+      section.style.animationPlayState = "running";
+    });
+  });
+</script>
+
+</body>
+</html>

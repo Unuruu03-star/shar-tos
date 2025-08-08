@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title data-i18n="title">Холбоо барих</title>
+<style>
+  :root {
+    --navy: #0a3d62;
+    --light-bg: #f9fafd;
+    --light-text: #222;
+    --light-section: #ffffff;
+    --dark-bg: #121212;
+    --dark-text: #e4e6eb;
+    --dark-section: #1e1e1e;
+    --accent: #1e90ff;
+  }
+  body {
+    margin: 0;
+    background: var(--light-bg);
+    color: var(--light-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  body.dark {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+  }
+  nav {
+    background-color: var(--navy);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  nav .logo {
+    user-select: none;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+    margin: 0;
+    padding: 0;
+  }
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  nav ul li a:hover {
+    text-decoration: underline;
+    color: #90caf9;
+  }
+  .controls {
+    display: flex;
+    gap: 20px;
+  }
+  .controls button {
+    background: transparent;
+    border: 1.5px solid white;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .controls button:hover {
+    background-color: white;
+    color: var(--navy);
+  }
+  main {
+    max-width: 900px;
+    margin: 70px auto;
+    padding: 20px;
+  }
+  section {
+    background-color: var(--light-section);
+    padding: 60px 30px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation-fill-mode: forwards;
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-delay: var(--delay);
+  }
+  body.dark section {
+    background-color: var(--dark-section);
+  }
+  section:nth-child(1) { --delay: 0.3s; }
+  section:nth-child(2) { --delay: 0.6s; }
+  section:nth-child(3) { --delay: 0.9s; }
+  section:nth-child(4) { --delay: 1.2s; }
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  h1, h2 {
+    margin-bottom: 20px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  input, textarea {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 7px;
+    border: 1.5px solid #ccc;
+    resize: vertical;
+  }
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  button.submit-btn {
+    width: 140px;
+    padding: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+    border-radius: 7px;
+    background-color: var(--accent);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  button.submit-btn:hover {
+    background-color: #0e74b5;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" data-i18n="logo">IT Танилцуулга</div>
+  <ul>
+    <li><a href="about me index.html" data-i18n="nav_home">Нүүр</a></li>
+    <li><a href="about me.html" data-i18n="nav_about">Танилцуулга</a></li>
+    <li><a href="about me skills.html" data-i18n="nav_skills">Ур чадвар</a></li>
+    <li><a href="about me contact.html" data-i18n="nav_contact">Холбоо</a></li>
+  </ul>
+  <div class="controls">
+    <button id="darkModeToggle"> Dark mode</button>
+    <button id="langToggle">EN</button>
+  </div>
+</nav>
+
+<main>
+  <section>
+    <h1 data-i18n="contact_title">Холбоо барих</h1>
+    <form onsubmit="return false;">
+      <label for="name" data-i18n="form_name">Нэр:</label>
+      <input type="text" id="name" placeholder="Таны нэр" required />
+      
+      <label for="email" data-i18n="form_email">И-мэйл:</label>
+      <input type="email" id="email" placeholder="you@example.com" required />
+      
+      <label for="message" data-i18n="form_message">Зурвас:</label>
+      <textarea id="message" rows="5" placeholder="Таны зурвас" required></textarea>
+      
+      <button class="submit-btn" data-i18n="form_submit">Илгээх</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p data-i18n="footer">&copy; 2025 Миний вебсайт.</p>
+</footer>
+
+<script>
+  const translations = {
+    mn: {
+      title: "Холбоо барих",
+      logo: "IT Танилцуулга",
+      nav_home: "Нүүр",
+      nav_about: "Танилцуулга",
+      nav_skills: "Ур чадвар",
+      nav_contact: "Холбоо",
+      contact_title: "Холбоо барих",
+      form_name: "Нэр:",
+      form_email: "И-мэйл:",
+      form_message: "Зурвас:",
+      form_submit: "Илгээх",
+      footer: "© 2025 Миний вебсайт."
+    },
+    en: {
+      title: "Contact",
+      logo: "IT Portfolio",
+      nav_home: "Home",
+      nav_about: "About",
+      nav_skills: "Skills",
+      nav_contact: "Contact",
+      contact_title: "Contact Me",
+      form_name: "Name:",
+      form_email: "Email:",
+      form_message: "Message:",
+      form_submit: "Send",
+      footer: "© 2025 My Website."
+    }
+  };
+
+  let currentLang = localStorage.getItem("lang") || "mn";
+
+  function updateTexts() {
+    document.title = translations[currentLang].title;
+    document.documentElement.lang = currentLang;
+
+    const elements = document.querySelectorAll("[data-i18n]");
+    elements.forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (translations[currentLang][key]) {
+        el.textContent = translations[currentLang][key];
+      }
+    });
+
+    document.getElementById("langToggle").textContent = currentLang === "mn" ? "EN" : "MN";
+
+    const darkModeBtn = document.getElementById("darkModeToggle");
+    if(document.body.classList.contains("dark")) {
+      darkModeBtn.textContent = " Light mode";
+    } else {
+      darkModeBtn.textContent = "Dark mode";
+    }
+  }
+
+  function toggleLanguage() {
+    currentLang = currentLang === "mn" ? "en" : "mn";
+    localStorage.setItem("lang", currentLang);
+    updateTexts();
+  }
+
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+    updateTexts();
+  }
+
+  document.getElementById("langToggle").addEventListener("click", toggleLanguage);
+  document.getElementById("darkModeToggle").addEventListener("click", toggleDarkMode);
+
+  window.addEventListener("load", () => {
+    if(localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+    }
+    currentLang = localStorage.getItem("lang") || "mn";
+    updateTexts();
+    document.querySelectorAll("section").forEach(section => {
+      section.style.animationPlayState = "running";
+    });
+  });
+</script>
+
+</body>
+</html>
+
+
